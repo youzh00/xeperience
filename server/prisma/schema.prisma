@@ -6,6 +6,19 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model Review {
+  id             Int      @id @default(autoincrement())
+  appID          String
+  appStoreName   String
+  reviewDate     DateTime
+  rating         Int
+  version        String
+  countryName    String
+  reviewHeading  String
+  reviewText     String
+  reviewUserName String
 }
