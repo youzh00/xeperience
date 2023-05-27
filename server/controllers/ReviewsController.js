@@ -25,6 +25,42 @@ const getAllReviews = async (req, res) => {
   }
 };
 
+const createReview = async (req, res) => {
+  const {
+    appID,
+    appStoreName,
+    reviewDate,
+    rating,
+    version,
+    countryName,
+    reviewHeading,
+    reviewText,
+    reviewUserName,
+  } = req.body;
+
+  try {
+    const review = await prisma.review.create({
+      data: {
+        appID,
+        appStoreName,
+        reviewDate,
+        rating,
+        version,
+        countryName,
+        reviewHeading,
+        reviewText,
+        reviewUserName,
+      },
+    });
+
+    res.json({ review });
+  } catch (error) {
+    console.error("Error creating review:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 module.exports = {
   getAllReviews,
+  createReview,
 };
