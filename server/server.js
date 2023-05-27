@@ -6,7 +6,7 @@ const server = express();
 server.use(express.json());
 server.use(cors({ credentials: true, origin: true }));
 
-server.use("/api", reviewsRouter);
+server.use("/reviews", reviewsRouter);
 
 server.get("/", (req, res) => {
   res.send("Hello, world!");
